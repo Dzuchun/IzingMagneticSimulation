@@ -1,12 +1,11 @@
 import java.util.Collection;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import dzuchun.lib.math.DescreteVector;
 
 /**
  * This class is designed to encapsulate a multidimentional array
- * 
+ *
  * @author dzu
  *
  * @param <V>
@@ -41,6 +40,7 @@ public abstract class SpinTable<V extends DescreteVector> {
 	/**
 	 * Should return new spinTable but with same contents
 	 */
+	@Override
 	public abstract SpinTable<V> clone();
 
 	/*
@@ -55,7 +55,7 @@ public abstract class SpinTable<V extends DescreteVector> {
 
 	/**
 	 * This method should evaluate a parameter the getter specified
-	 * 
+	 *
 	 * @return calculated parameter
 	 */
 	public abstract double calculateParameter(Function<V, Double> parameterGetter);

@@ -61,7 +61,7 @@ public class IzingSystem<V extends DescreteVector, T extends SpinTable<V>> imple
 	@Override
 	public void advance(Integer value) {
 		lastAdvanceFlips = 0;
-		for (int i = 0; i < (int) value; i++) {
+		for (int i = 0; i < value; i++) {
 			performIzingReaction();
 		}
 	}
@@ -75,7 +75,7 @@ public class IzingSystem<V extends DescreteVector, T extends SpinTable<V>> imple
 		} else {
 			double r = random.nextDouble();
 			double T = temperature.get();
-			if (r < Math.exp(2 * E / T)) {
+			if (r < Math.exp((2 * E) / T)) {
 				this.flipSpin(target);
 			}
 		}
@@ -121,7 +121,7 @@ public class IzingSystem<V extends DescreteVector, T extends SpinTable<V>> imple
 	}
 
 	public double getMagnetization() {
-		return 2.0d * this.stateTable.getPositiveSpins() / this.stateTable.volume() - 1.0d;
+		return ((2.0d * this.stateTable.getPositiveSpins()) / this.stateTable.volume()) - 1.0d;
 	}
 
 	public double getEnergy() {

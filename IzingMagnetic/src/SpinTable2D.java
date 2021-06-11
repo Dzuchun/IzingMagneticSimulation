@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import dzuchun.lib.math.DescreteVector2D;
@@ -14,14 +13,14 @@ public class SpinTable2D extends SpinTable<DescreteVector2D> {
 
 	public SpinTable2D(DescreteVector2D sizeIn) {
 		super(sizeIn);
-		this.size = sizeIn;
-		this.data = new boolean[sizeIn.getX()][sizeIn.getY()];
-		this.volume = this.size.getX() * this.size.getY();
+		size = sizeIn;
+		data = new boolean[sizeIn.getX()][sizeIn.getY()];
+		volume = size.getX() * size.getY();
 	}
 
 	@Override
 	public void assign(DescreteVector2D pos, boolean state) {
-		this.data[pos.getX()][pos.getY()] = state;
+		data[pos.getX()][pos.getY()] = state;
 	}
 
 	@Override
@@ -30,7 +29,7 @@ public class SpinTable2D extends SpinTable<DescreteVector2D> {
 	}
 
 	public boolean get(int x, int y) {
-		return this.data[MathUtil.positiveFloor(x, this.size.getX())][MathUtil.positiveFloor(y, this.size.getY())];
+		return data[MathUtil.positiveFloor(x, size.getX())][MathUtil.positiveFloor(y, size.getY())];
 	}
 
 	@Override
@@ -45,9 +44,9 @@ public class SpinTable2D extends SpinTable<DescreteVector2D> {
 
 	@Override
 	public void fill(Function<DescreteVector2D, Boolean> generator) {
-		for (int i = 0; i < this.size.getX(); i++) {
-			for (int j = 0; j < this.size.getY(); j++) {
-				this.data[i][j] = generator.apply(new DescreteVector2D(i, j));
+		for (int i = 0; i < size.getX(); i++) {
+			for (int j = 0; j < size.getY(); j++) {
+				data[i][j] = generator.apply(new DescreteVector2D(i, j));
 			}
 		}
 	}
@@ -55,7 +54,7 @@ public class SpinTable2D extends SpinTable<DescreteVector2D> {
 	@Override
 	public SpinTable<DescreteVector2D> clone() {
 		SpinTable2D res = new SpinTable2D(size);
-		res.data = this.data.clone();
+		res.data = data.clone();
 		return res;
 	}
 
@@ -64,7 +63,7 @@ public class SpinTable2D extends SpinTable<DescreteVector2D> {
 		int res = 0;
 		for (int i = 0; i < size.getX(); i++) {
 			for (int j = 0; j < size.getY(); j++) {
-				if (this.data[i][j]) {
+				if (data[i][j]) {
 					res++;
 				}
 			}
@@ -80,8 +79,8 @@ public class SpinTable2D extends SpinTable<DescreteVector2D> {
 	@Override
 	public double calculateParameter(Function<DescreteVector2D, Double> parameterGetter) {
 		double res = 0;
-		for (int i = 0; i < this.size.getX(); i++) {
-			for (int j = 0; j < this.size.getY(); j++) {
+		for (int i = 0; i < size.getX(); i++) {
+			for (int j = 0; j < size.getY(); j++) {
 				res += parameterGetter.apply(new DescreteVector2D(i, j));
 			}
 		}
