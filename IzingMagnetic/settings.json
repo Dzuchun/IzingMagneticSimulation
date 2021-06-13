@@ -1,0 +1,24 @@
+{
+	"data": {
+		"saves_folder": "./saves/",
+		"filename_format": "data.xlsx",
+		"macrosaves": 20,
+		"microsaves": 100
+	},
+	"start_conditions": {
+		"temperature_0": 2.0,
+		"temperature_d": 0.02,
+		"tension_0": 0.0,
+		"tension_d": 0.0,
+		"simulations": 16,
+		"max_threads": 4
+	},
+	"mech": {
+		"grid_size": 50,
+		"iterations_density": 1000
+	},
+	"graph": {
+		"fps": 60,
+		"enable_visualization": true
+	}
+}
